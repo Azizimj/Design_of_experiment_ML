@@ -3,7 +3,8 @@
 # literature review: 1
 - importance of topic
 - example
-- DoE literature review
+- DoE literature review:
+    - application of DoE in prediction of energy
 
 # Data Visualize and Description: 2
 
