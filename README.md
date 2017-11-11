@@ -14,9 +14,13 @@ DoE project Fall 2017
     - linear regression works?
     - which features are important here?
 - Split plot Design:
+    -
 
 
-- Distribution Estimation:
-    _Data production
+
+# Data production
+   - Distribution Estimation
+   -Data purturbation
+
 
 
