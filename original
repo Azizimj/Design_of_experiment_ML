@@ -1,0 +1,33 @@
+setwd("F:/term1/DoE/Proj")
+
+orginal=read.csv("energydata_complete.csv",as.is = T,header = T,stringsAsFactors = T)
+str(orginal$date)
+orginal$date_day=as.Date(orginal$date,format = "%Y-%m-%d")
+summary(orginal$date_day)
+orginal[["date_day"]][1]-orginal[["date_day"]][1]
+orginal$time=format(as.POSIXct(strptime(orginal$date,"%Y-%m-%d %H:%M:%S",tz="GMT")) 
+                    ,format = "%Y-%m-%d %H:%M:%S")
+summary(orginal$time)
+orginal[["time"]][1];orginal[["time"]][1]<orginal[["time"]][2]
+orginal[["time"]][1]<as.Date("2016-01-18 12:20:00")
+
+#Split plot
+summary(orginal$RH_out)
+summary(orginal$T_out)
+summary(subset(orginal$date_day,orginal$T_out==6))
+str(subset(orginal$date_day,orginal$T_out==5))
+
+# ANOVCOV
+summary(orginal$lights)
+orginal1=orginal[,-which(names(orginal) %in% c("date","time","date_day"))]
+orginal1=orginal1[1:5000,]
+lm1=lm(orginal1$Appliances~ .-orginal1$Windspeed-orginal1$RH_out-orginal1$Visibility
+       -orginal1$T_out-orginal1$T_out , orginal1)
+summary(lm1)
+
+# blocking
+names(orginal)
+summary(orginal$T1)
+summary(orginal$RH_1)
+a=subset(orginal, orginal$T1 >= 16 & orginal$T1<= 20 )
+summary(a$RH_1)
