@@ -12,6 +12,7 @@
 
 
 # Experiment 
+- Boruta __J__  
 - Stepwise linear regression and feature selection: (3 pages) __J__
 
 - describe the need for leveling (0.5 pages) __J__
