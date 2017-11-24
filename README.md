@@ -12,8 +12,9 @@
 
 
 # Experiment 
-- Boruta __J__  
-- Stepwise linear regression and feature selection: (3 pages) __J__
+- Boruta __J__  Done 
+- Stepwise linear regression and feature selection: (3 pages) __J__ Done
+- models comparison __J__ 
 
 - describe the need for leveling (0.5 pages) __J__
 # leveling the temp and humidity (0.5 p) __J__
