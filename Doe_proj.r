@@ -146,6 +146,7 @@ pred_svm1 = (pred_svm1 * (max(orginal1$Appliances) - min(orginal1$Appliances))) 
 RMSE.svm1 = (sum((orginal1_test$Appliances - pred_svm1)^2) / nrow(orginal1_test)) ^ 0.5
 RMSE.svm1
 
+##################
 # RF
 #install.packages("randomForest")
 require(randomForest)
@@ -155,6 +156,7 @@ plot(RF)
 pred_rf<-predict(rf,orginal1_test)
 rf_test_err= with(orginal1_test, mean( (Appliances - pred_rf)^2)) 
 
+####################
 # GBM
 #install.packages("gbm")
 #install.packages("cvAUC")
