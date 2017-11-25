@@ -34,6 +34,10 @@ orginal1_scale = as.data.frame(scale(orginal1, center = mins, scale = maxs - min
 orginal1_train_scale = orginal1_scale[train_index,]
 orginal1_test_scale = orginal1_scale[-train_index,]
 
+##Pair wise plots  # data visulization (not complete)
+ggcorplot(orginal[,which(names(orginal) %in% c("Appliances","lights","T1","RH_1","T_out"))] 
+            ,var_text_size = 5,cor_text_limits = c(5,10))
+pairs(orginal[,which(names(orginal) %in% c("Appliances","lights","T1","RH_1","T_out"))] )
 ############
 # Split plot
 summary(orginal$RH_out)
@@ -91,6 +95,19 @@ step_both = step(null, scope = list(upper=full), data=orginal_train, direction="
 summary(step_both)
 step_both$anova # result is saved
 
+# CARET to find correlations and important ones
+install.packages("mlbench")
+install.packages("caret")
+install.packages("recipes")
+library(recipes)
+library(mlbench)
+library(caret)
+correlationMatrix <- cor(orginal1[,2:29])
+#highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.5)
+
+model <- train(Appliances~., data=orginal1, method="", preProcess="scale", trControl=control)
+
+
 mdl=lm(Appliances ~ NSM+lights+RH_out+RH_1+RH_7+RH_2+RH_8 ,orginal_train )
 summary(mdl) # Most of them are important 
 plot(mdl) # the residuals have non-normal behavior
@@ -122,10 +139,55 @@ RMSE.NN = (sum((orginal1_test$Appliances - predict_testNN)^2) / nrow(orginal1_te
 # SVM
 install.packages("e1071")
 library(e1071)
-
 svm1=svm(Appliances ~NSM+lights+RH_out+RH_1+RH_7+RH_2+RH_8 ,orginal1_train_scale )
 summary(svm1$residuals)
 pred_svm1 <- predict(svm1, orginal1_test_scale)
 pred_svm1 = (pred_svm1 * (max(orginal1$Appliances) - min(orginal1$Appliances))) + min(orginal1$Appliances)
 RMSE.svm1 = (sum((orginal1_test$Appliances - pred_svm1)^2) / nrow(orginal1_test)) ^ 0.5
 RMSE.svm1
+
+# RF
+#install.packages("randomForest")
+require(randomForest)
+RF = randomForest(Appliances ~ . , data = orginal1_train)
+plot(RF)
+# RMSE
+pred_rf<-predict(rf,orginal1_test)
+rf_test_err= with(orginal1_test, mean( (Appliances - pred_rf)^2)) 
+
+# GBM
+#install.packages("gbm")
+#install.packages("cvAUC")
+library(gbm)
+library(cvAUC)
+gbm_model <- gbm(Appliances ~ ., distribution = "bernoulli",data = orginal1_train ,n.trees = 300,interaction.depth = 5,shrinkage = 0.3,bag.fraction = 0.5,train.fraction = 1.0,n.cores = NULL)
+print(model)
+preds_gbm <- predict(gbm_model, newdata = orginal1_test, n.trees = 300)
+labels <- orginal1_test[,"Appliances"]
+# Compute AUC on the test set
+cvAUC::AUC(predictions = preds, labels = labels)
+#RMSE
+gbm_test_err = with(orginal1_test, mean( (Appliances - pred_gbm)^2)) 
+
+
+############################
+## data leveling
+orginal_leveled = orginal
+
+summary(orginal_leveled$T1)
+orginal_leveled$T1_l =""
+orginal_leveled$T1_l[orginal_leveled$T1<=20]="low"
+orginal_leveled$T1_l[orginal_leveled$T1>20 & orginal_leveled$T1<=23]="med"
+orginal_leveled$T1_l[orginal_leveled$T1>23]="high"
+orginal_leveled$T1_l = as.factor(orginal_leveled$T1_l)
+summary(orginal_leveled$T1_l)
+
+summary(orginal_leveled$RH_1)
+orginal_leveled$RH_1_l =""
+orginal_leveled$RH_1_l[orginal_leveled$RH_1<=40]="low"
+orginal_leveled$RH_1_l[orginal_leveled$RH_1>40 & orginal_leveled$RH_1<=50]="med"
+orginal_leveled$RH_1_l[orginal_leveled$RH_1>50]="high"
+orginal_leveled$RH_1_l = as.factor(orginal_leveled$RH_1_l)
+summary(orginal_leveled$RH_1_l)
+
+#to do in this way
