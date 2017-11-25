@@ -14,10 +14,10 @@
 # Experiment 
 - Boruta __J__  Done 
 - Stepwise linear regression and feature selection: (3 pages) __J__ Done
-- models comparison __J__ 
+- models comparison __J__ Done
 
-- describe the need for leveling (0.5 pages) __J__
-# leveling the temp and humidity (0.5 p) __J__
+- describe the need for leveling (0.5 pages) __J__ Done
+- leveling the temp and humidity (0.5 p) __J__ Done
 
 - RSM (4 pages) __S__
 - Split plot Design: (3 pages) __S__
@@ -27,9 +27,9 @@
     -lights
 - block (2 p) __S__
 
-# opt the hyperparameters of ANN ( random selection ) (1 p) __J__
-# Using significants of stepwise in ANN: (3 pages)  __J__
-       - meta-model based optimization (B.Sc. thesis) (2 p) __J__
+# opt the hyperparameters of ANN ( random selection ) (1 p) __J__ Done
+# Using significants of stepwise in ANN: (3 pages)  __J__  Done
+       - meta-model based optimization (2 p) __J__  Done
 
 # reference paper results (2 p)
 
