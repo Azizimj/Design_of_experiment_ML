@@ -1,12 +1,12 @@
 # DoE-Project (DoE project Fall 2017)
 
 # literature review: (3 pages) __S__
-- importance of topic
-- example
-- DoE literature review:
+- importance of topic Done
+- example (?)
+- DoE literature review: Done
     - application of DoE in prediction of energy
 
-# Data Visualize and Description: (4 pages) __S__
+# Data Visualize and Description: (4 pages) __S__ Done
 - copy past of source
 - knime
 
