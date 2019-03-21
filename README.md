@@ -1,39 +1,39 @@
-# DoE-Project (DoE project Fall 2017)
+# DoE
 
-# literature review: (3 pages) __S__
+# literature review:
 - importance of topic Done
 - example (?)
 - DoE literature review: Done
     - application of DoE in prediction of energy
 
-# Data Visualize and Description: (4 pages) __S__ Done
+# Data Visualize and Description:
 - copy past of source
 - knime
 
 
 # Experiment 
-- Boruta __J__  Done 
-- Stepwise linear regression and feature selection: (3 pages) __J__ Done
-- models comparison __J__ Done
+- Boruta
+- Stepwise linear regression and feature selection:
+- models comparison
 
-- describe the need for leveling (0.5 pages) __J__ Done
-- leveling the temp and humidity (0.5 p) __J__ Done
+- describe the need for leveling
+- leveling the temp and humidity
 
-- RSM (4 pages) __S__
-- Split plot Design: (3 pages) __S__
+- RSM
+- Split plot Design
     - T_out 
     - F test to find significants
-- ANOVCOV: ( 2 p)  __S__
+- ANOVCOV:
     -lights
-- block (2 p) __S__
+- block
 
-# opt the hyperparameters of ANN ( random selection ) (1 p) __J__ Done
-# Using significants of stepwise in ANN: (3 pages)  __J__  Done
-       - meta-model based optimization (2 p) __J__  Done
+# Tunning the hyperparameters of ANN (random search)
+# Using significants of stepwise in ANN:
+       - meta-model based optimization for tunning
 
-# reference paper results (2 p)
+# reference paper results
 
-# Data production (2 p)
+# Data production
    - Distribution Estimation
    - Data purturbation
 
